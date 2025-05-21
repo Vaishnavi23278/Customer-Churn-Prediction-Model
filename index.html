@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Telecom Churn Prediction</title>
+    <style>
+        /* Reset some default styling */
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #f4f7f8;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: #333;
+            padding: 30px;
+        }
+
+        h2 {
+            text-align: center;
+            color: #007BFF;
+            margin-bottom: 30px;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+        form {
+            background: #fff;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 25px 40px;
+            border-radius: 12px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+            transition: box-shadow 0.3s ease;
+        }
+        form:hover {
+            box-shadow: 0 12px 30px rgba(0,0,0,0.15);
+        }
+
+        label {
+            display: block;
+            margin-bottom: 6px;
+            font-weight: 600;
+            color: #555;
+            text-transform: capitalize;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 10px 12px;
+            margin-bottom: 20px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: border-color 0.3s ease;
+        }
+        input[type="text"]:focus {
+            border-color: #007BFF;
+            outline: none;
+            box-shadow: 0 0 5px rgba(0,123,255,0.4);
+        }
+
+        input[type="submit"] {
+            display: block;
+            width: 100%;
+            padding: 14px;
+            font-size: 18px;
+            background-color: #007BFF;
+            border: none;
+            border-radius: 10px;
+            color: white;
+            font-weight: 700;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            letter-spacing: 1px;
+        }
+        input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+
+        /* Responsive for smaller devices */
+        @media (max-width: 640px) {
+            form {
+                padding: 20px 20px;
+            }
+            input[type="submit"] {
+                font-size: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h2>Enter Customer Details</h2>
+    <form action="/predict" method="post">
+        {% for field in ['customerID', 'gender', 'SeniorCitizen', 'Partner', 'Dependents', 
+                         'tenure', 'PhoneService', 'MultipleLines', 'InternetService', 
+                         'OnlineSecurity', 'OnlineBackup', 'DeviceProtection', 'TechSupport', 
+                         'StreamingTV', 'StreamingMovies', 'Contract', 'PaperlessBilling', 
+                         'PaymentMethod', 'MonthlyCharges', 'TotalCharges'] %}
+            <label for="{{ field }}">{{ field }}</label>
+            <input type="text" id="{{ field }}" name="{{ field }}">
+        {% endfor %}
+        <input type="submit" value="Submit">
+    </form>
+</body>
+</html>
